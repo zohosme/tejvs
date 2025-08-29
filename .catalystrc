@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "1540000000021025",
+      "name": "SMEAssistanceExtension",
+      "domain": {
+        "id": "10102376879",
+        "name": "smeassistanceextension-829331860.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "829331860",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

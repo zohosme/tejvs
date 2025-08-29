@@ -1,0 +1,12 @@
+[error] [2025-06-05T12:36:40.458Z] : uncaughtException: npm notice
+npm notice New major version of npm available! 10.8.3 -> 11.4.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.1
+npm notice To update run: npm install -g npm@11.4.1
+npm notice
+Error: npm notice
+npm notice New major version of npm available! 10.8.3 -> 11.4.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.1
+npm notice To update run: npm install -g npm@11.4.1
+npm notice
+    at /usr/local/lib/node_modules/zoho-extension-toolkit/lib/utils/runHookCommand.js:47:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

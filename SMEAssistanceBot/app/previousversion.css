@@ -1,0 +1,683 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* Move Button Container */
+.move-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+/* Move Button */
+button#moveBtn {
+    padding: 8px 12px;
+    border: none;
+    background-color: #6a0f91;
+    color: white;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+button#moveBtn:hover {
+    background-color: #4a0a6b;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Input Fields and Dropdown */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #1b42d1;
+    outline: 2px solid #1b42d1;
+    outline-offset: 2px;
+}
+
+/* Rich Text Editor */
+.editor-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 150px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.ql-editor {
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+/* Attachment Upload Section */
+.upload-container {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.upload-container:hover {
+    border-color: #1b42d1;
+}
+
+.drop-area {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-text {
+    color: #555;
+    font-size: 12px;
+}
+
+/* File Upload List */
+ul {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.file-item {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the left */
+    background: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    transition: background 0.3s ease;
+    box-sizing: border-box;
+    position: relative; /* For delete button positioning */
+}
+
+.file-item:hover {
+    background: #f0f0f0;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px; /* Space between file name and progress bar */
+}
+
+.file-size {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 8px; /* Space between file size and progress bar */
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: red;
+    display: none;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.file-item:hover .delete-btn {
+    display: inline;
+}
+
+.delete-btn:hover {
+    color: darkred;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 6px;
+    display: block;
+}
+
+/* Progress Bar for File Uploads */
+.progress-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack progress bar and percentage */
+    align-items: flex-start; /* Align to the left */
+    gap: 5px; /* Space between progress bar and percentage */
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    width: 0;
+    background-color: green;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.progress-percentage {
+    font-size: 12px;
+    color: #555;
+}
+
+.file-item.uploaded .progress-bar-inner {
+    background-color: blue;
+}
+
+.file-item.uploaded .progress-percentage {
+    color: blue;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+/* Cancel Button */
+button#cancelBtn {
+    padding: 10px 15px;
+    border: 2px solid #6a0f91;
+    background-color: white;
+    color: #6a0f91;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 45%;
+    margin-right: 8px;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+button#cancelBtn:hover {
+    background-color: #f8f3fa;
+    border-color: #6a0f91;
+}
+
+/* Submit Button */
+button#submitBtn {
+    padding: 10px 15px;
+    border: none;
+    background-color: #1b42d1;
+    color: white;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 45%;
+    transition: background 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+button#submitBtn:hover {
+    background-color: #0a2a8a;
+}
+
+/* Searchable Dropdown */
+.searchable-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.searchable-dropdown input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background: white;
+    z-index: 10;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-option {
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #333;
+    transition: background 0.3s ease;
+}
+
+.dropdown-option:hover {
+    background-color: #f0f0f0;
+}
+
+/* SME Agent Dropdown Container */
+#smeAgentContainer {
+    margin-top: 10px;
+}
+
+.note {
+    font-size: 12px;
+    color: #ff4400df; /* Orange color for emphasis */
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Loader Overlay */
+#overlay-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+}
+
+#loader-container {
+    text-align: center;
+}
+
+/* Loader Animation */
+.loader {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+.loader span {
+    position: absolute;
+    height: 10px;
+    width: 84px;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: hidden;
+}
+
+.loader span > i {
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    animation: wait 4s infinite;
+}
+
+.loader span > i:nth-of-type(1) {
+    left: -28px;
+    background: yellow;
+    animation-delay: 0s;
+}
+
+.loader span > i:nth-of-type(2) {
+    left: -21px;
+    background: lightgreen;
+    animation-delay: 0.8s;
+}
+
+.loader span > i:nth-of-type(3) {
+    left: -14px;
+    background: #ff6666; /* Red */
+    animation-delay: 1.6s;
+}
+
+.loader span > i:nth-of-type(4) {
+    left: -7px;
+    background: #6699ff; /* Blue */
+    animation-delay: 2.4s;
+}
+
+/* Spinning Animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dot Movement Animation */
+@keyframes wait {
+    0%   { left: -28px; }
+    30%  { left: 52px;  }
+    60%  { left: 22px;  }
+    100% { left: 100px; }
+}
+
+/* Loading Text */
+#loader-container p {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    button#cancelBtn, button#submitBtn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+.file-item {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the left */
+    background: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    transition: background 0.3s ease;
+    box-sizing: border-box;
+}
+
+.file-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #333;
+}
+
+.delete-icon {
+    cursor: pointer;
+    color: #ff4d4d;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+    color: #cc0000;
+}
+
+.progress-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack progress bar and percentage */
+    align-items: flex-start; /* Align to the left */
+    gap: 5px; /* Space between progress bar and percentage */
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    width: 0;
+    background-color: green;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.progress-percentage {
+    font-size: 12px;
+    color: #555;
+}
+
+.file-item.uploaded .progress-bar-inner {
+    background-color: blue;
+}
+
+.file-item.uploaded .progress-percentage {
+    color: blue;
+}
+.delete-icon {
+    cursor: pointer;
+    color: #ff4d4d;
+    font-size: 16px;
+    margin-left: 10px; /* Add some spacing */
+    transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+    color: #cc0000;
+}.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 6px;
+    display: block;
+}
+.note-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #0056b3;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #2d3e50;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    line-height: 1.5;
+  }
+  
+  .note-box p {
+    margin: 8px 0;
+  }
+  
+  .note-box strong {
+    color: #0056b3;
+    font-weight: 600;
+  }
+  
+  .note-box p:first-child {
+    margin-top: 0;
+  }
+  
+  .note-box p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .note-small {
+    font-size: 12px;
+    color: #d32f2f; /* red or any alert color */
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  label.required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+  }
+  #overlay-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none; /* Hidden by default */
+    z-index: 9999; /* Ensure it sits above other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #loader-container {
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+  .editor-textarea {
+    width: 100%;
+    height: 200px;
+    padding: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.editor-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 150px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.ql-editor {
+    overflow-y: auto;
+    height: 100%;
+    padding: 8px;
+}
+.ql-editor a {
+    color: #007bff; /* Bootstrap blue for visibility */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.editor-container,
+.ql-container {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 1;
+}
+.ql-tooltip {
+    position: absolute !important;
+    z-index: 10000 !important;  /* ensure it's on top of all UI */
+    transform: none !important; /* prevent misplacement from transforms */
+}
+.parent-of-editor {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 10;
+}
+
+.char-count {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    text-align: right;
+}
+.editor-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .editor-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 150px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  .ql-editor {
+    height: 100%;
+    padding: 8px;
+    overflow-y: auto;
+  }
+  
+  .ql-editor a {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .char-count {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    margin-top: 4px;
+  }
+  

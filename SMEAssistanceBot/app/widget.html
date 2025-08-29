@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US SME Assistance</title>
+  <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill-mention@2.2.6/dist/quill.mention.min.css">
+
+  <link rel="stylesheet" href="styles.css"> <!-- Make sure this file exists -->
+
+    
+
+</head>
+
+<body>
+  <script src="https://js.zohostatic.com/support/developer_sdk/v1/js/ZohoDeskClientSDK.min.js"></script>
+  <div class="form-container">
+    
+<!-- Initial Note at Top -->
+<div class="note-box" id="initialNote">
+  <p><strong>Note:</strong></p>
+  <p>
+    Select <strong>"New Request"</strong> if this ticket is being assigned to SME for the first time.<br>
+    Select <strong>"Reassign to SME"</strong> if the ticket was previously assigned to an SME and returned to you.
+  </p>
+</div>
+
+<form id="myForm" novalidate>
+  <div class="form-group">
+    <label for="requesttype" class="required-label">Type:</label>
+    <select id="requesttype" name="requesttype" required>
+      <option value="">Select Type</option>
+      <option value="new_request">New Request</option>
+      <option value="reassign_sme">Reassign to SME</option>
+    </select>
+    
+
+  <!-- Main Note Box Below -->
+  <div class="note-box" id="mainnote" style="display:none;">
+    <p><strong>Note:</strong></p>
+    <p id="noteContent"></p>
+  </div>
+
+  <!-- Small extra note below -->
+  <p id="additionalNote" class="note-small" style="display:none;"></p>
+      
+      
+      
+      <div id="otherFieldsContainer" style="display: none;">
+      <!-- ZUID -->
+      <label for="zuid" class="required-label">ZUID:</label>
+      <input type="text" id="zuid" name="zuid" required>
+
+      <!-- ZGID -->
+      <label for="zgid" class="required-label">ZGID:</label>
+      <input type="text" id="zgid" name="zgid" required>
+
+      <!-- DC Dropdown -->
+      <label for="dc" class="required-label">DC:</label>
+      <select id="dc" name="dc" required>
+        <option value="" selected disabled hidden></option>
+        <option value="US">US</option>
+        <option value="EU">EU</option>
+        <option value="IN">IN</option>
+        <option value="China">China</option>
+        <option value="JP">JP</option>
+        <option value="UK">UK</option>
+        <option value="CA">CA</option>
+        <option value="SA">SA</option>
+        <option value="AU">AU</option>
+      </select>
+
+      <!-- DC Dropdown -->
+      <label for="region" class="required-label">Region:</label>
+      <select id="region" name="Region" required>
+        <option value="" selected disabled hidden></option>
+        <option value="US">US</option>
+        <option value="CANADA">CANADA</option>
+        <option value="EUROPE">EUROPE</option>
+        <option value="UK">UK</option>
+        <option value="APAC">APAC</option>
+        <option value="Australia">Australia</option>
+        <option value="INDIA">INDIA</option>
+        <option value="CHINA">CHINA</option>
+        <option value="JAPAN">JAPAN</option>
+        <option value="LATAM">LATAM</option>
+        <option value="MEA">MEA</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+
+      <label for="severity" class="required-label">Severity:</label>
+      <select id="severity" name="severity" required>
+        <option value="" selected disabled hidden></option>
+        <option value="S1">S1</option>
+        <option value="S2">S2</option>
+        <option value="S3">S3</option>
+      </select>
+
+      <p class="note" id="severity-note" style="display: none;"></p>
+
+      <!-- Service Dropdown -->
+      <label for="service" class="required-label">Service:</label>
+      <select id="service" name="service">
+        <option value="" selected disabled hidden></option>
+        <option value="zoho_crm">Zoho CRM</option>
+        <option value="zoho_bigin">Zoho Bigin</option>
+      </select>
+
+      <!-- Is RCA Required/Available? Picklist -->
+      <label for="rca" class="required-label">Is RCA Required/Available?</label>
+      <select id="rca" name="rca">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+
+      <!-- Request Form Dropdown -->
+      <label for="requestForm" id="requestFormLabel" class="required-label" style="display: none;">Request From:</label>
+      <select id="requestForm" name="requestForm" style="display: none;">
+        <option value="" selected disabled hidden></option>
+        <option value="CRM Mobile Team">CRM Mobile Team</option>
+        <option value="DC Migration">DC Migration</option>
+        <option value="Enterprise SDE">Enterprise SDE</option>
+        <option value="Enterprise Support">Enterprise Support</option>
+        <option value="Free User">Free User</option>
+        <option value="Internal User">Internal User</option>
+        <option value="Onboarding User">Onboarding User</option>
+        <option value="Paid User">Paid User</option>
+        <option value="Partner">Partner</option>
+        <option value="Premium SDE">Premium SDE</option>
+        <option value="Premium Support">Premium Support</option>
+        <option value="Prospective Customer">Prospective Customer</option>
+        <option value="Prospective Partner">Prospective Partner</option>
+        <option value="Standout Customer">Standout Customer</option>
+        <option value="Vertical CRM">Vertical CRM</option>
+      </select>
+
+
+    <label for="editor" class="required-label">Comment:</label>
+    <div class="editor-wrapper">
+      <div id="editor" class="editor-container"></div>
+      <div id="charCount" class="char-count"></div>
+    </div>
+ 
+        <label for="deptback" class="required-label">Dept to be moved back field:</label>
+      <select id="deptback" name="deptback" required>
+        <option value="" selected disabled hidden></option>
+        <option value="Zoho CRM">Zoho CRM</option>
+        <option value="Zoho CRM Premium Support">Zoho CRM Premium Support</option>
+        <option value="Enterprise Support">Enterprise Support</option>
+        <option value="Presales Support">Presales Support</option>
+        <option value="Zoho One">Zoho One</option>
+        <option value="Zoho One Premium Support">Zoho One Premium Support</option>
+        <option value="Premium SDE">Premium SDE</option>
+        <option value="Partner Support">Partner Support</option>
+        <option value="Onboarding">Onboarding</option>
+        <option value="Premium Onboarding">Premium Onboarding</option>
+        <option value="Zoho CRM Plus">Zoho CRM Plus</option>
+        <option value="Zoho CRM Plus Premium Support">Zoho CRM Plus Premium Support</option>
+        <option value="Latam Classic Support">Latam Classic Support</option>
+        <option value="Latam Enterprise Support">Latam Enterprise Support</option>
+        <option value="Latam Onboarding">Latam Onboarding</option>
+        <option value="Latam Partner Support">Latam Partner Support</option>
+        <option value="Latam Premium Support">Latam Premium Support</option>
+        <option value="Latam Presales">Latam Presales</option>
+        <option value="Latam Sales">Latam Sales</option>
+        <option value="Zoho Payments">Zoho Payments</option>
+        <option value="Brazil Classic Support">Brazil Classic Support</option>
+        <option value="Zoho Europe">Zoho Europe</option>
+        <option value="MEA Support">MEA Support</option>
+        <option value="Zoho Jumpstart">Zoho Jumpstart</option>
+        <option value="Latam Jumpstart">Latam Jumpstart</option>
+        <option value="Mobile - Zoho CRM">Mobile - Zoho CRM</option>
+        <option value="RouteIQ">RouteIQ</option>
+        <option value="Champions Support">Champions Support</option>
+      </select>
+
+      <!-- Attachment Section -->
+      <label>Attachment:</label>
+      <div class="upload-container">
+        <label for="fileInput" class="drop-area" id="dropArea">
+          <input type="file" id="fileInput" multiple>
+          <div class="upload-text">
+            <p>Drag & drop or click to choose files</p>
+            <small>Max file size: 20MB, Total max: 50MB, Max files: 10</small>
+          </div>
+        </label>
+        <ul id="fileList"></ul>
+        <p id="error-message" class="error"></p>
+      </div>
+
+      <p class="note">Note: If a single file exceeds 20 MB or if the total size of multiple files exceeds 50 MB,
+        please upload them as a comment on the ticket and fill in the relevant details in this form. </p>
+
+      <div id="overlay-loader" style="display: none;">
+        <div id="loader-container">
+          <!-- <img src="img/ZohologodarkBG.gif" alt="Loading..." id="loader" /> -->
+          <p>Please wait while we process your request. Do not reload or close the page...</p>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-container">
+        <button type="button" id="submitBtn">Move</button>
+        <button type="button" id="cancelBtn">Cancel</button>
+      </div>
+      
+    </form>
+  </div>
+<!-- Quill JS (must come first) -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/quill-mention@2.2.6/dist/quill.mention.min.js"></script>
+
+
+<!-- Your custom script initializing Quill -->
+<script src="script.js"></script>
+  
+</body>
+
+</html>
