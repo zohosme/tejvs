@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+package-lock.json
+tmp
+tests/development
+.nyc_output
+JestAndPuppeteerCoverage
+.idea
